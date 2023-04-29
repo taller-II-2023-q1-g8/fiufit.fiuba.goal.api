@@ -17,7 +17,7 @@ def test_is_completed_when_satisfied():
     ]
 
     deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, metrics)
+    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
 
     # Then
     assert goal.was_achieved()
@@ -34,7 +34,7 @@ def test_isnt_completed_when_not_satisfied():
     ]
 
     deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, metrics)
+    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
 
     # Then
     assert not goal.was_achieved()
@@ -51,10 +51,10 @@ def test_completion_progress_not_full():
     ]
 
     deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, metrics)
+    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
 
     # Then
-    assert goal.completion_percentage() == 2/3
+    assert goal.completion_percentage() == 2/3 * 100
 
 
 def test_completion_progress_full():
@@ -70,10 +70,10 @@ def test_completion_progress_full():
     ]
 
     deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, metrics)
+    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
 
     # Then
-    assert goal.completion_percentage() == 1.0
+    assert goal.completion_percentage() == 100
 
 
 def test_completion_progress_overflow():
@@ -89,10 +89,10 @@ def test_completion_progress_overflow():
     ]
 
     deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(2, deadline, metrics)
+    goal = TrainingPlanCompletion(2, deadline, "Martin", metrics)
 
     # Then
-    assert goal.completion_percentage() == 1.0
+    assert goal.completion_percentage() == 100
 
 
 def test_was_failed_after_deadline_and_incomplete():
@@ -106,7 +106,8 @@ def test_was_failed_after_deadline_and_incomplete():
     expired_date = datetime(2021, 1, 2)
     goal = TrainingPlanCompletion(
         3,
-        deadline=expired_date,
+        deadline=expired_date, 
+        username="Martin",
         metrics=metrics
         )
 
@@ -126,6 +127,7 @@ def test_was_not_failed_before_deadline():
     goal = TrainingPlanCompletion(
         3,
         deadline,
+        username="Martin",
         metrics=metrics
         )
 
@@ -134,8 +136,8 @@ def test_was_not_failed_before_deadline():
 
 
 def test_was_not_failed_after_deadline_but_completed():
-        # Given
-    date1 = datetime(2021, 1, 1)
+    # Given
+    date1 = datetime(2020, 1, 1)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
@@ -145,6 +147,7 @@ def test_was_not_failed_after_deadline_but_completed():
     goal = TrainingPlanCompletion(
         1,
         deadline,
+        "Martin",
         metrics=metrics
         )
 
