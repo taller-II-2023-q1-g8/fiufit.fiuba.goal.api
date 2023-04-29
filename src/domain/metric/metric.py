@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Metric:
-    crated_at: datetime
+    created_at: datetime
     username: str
 
 

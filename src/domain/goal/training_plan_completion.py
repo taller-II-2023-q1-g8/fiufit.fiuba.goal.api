@@ -9,6 +9,7 @@ class TrainingPlanCompletion(Goal):
     def __init__(
         self,
         goal_num_of_completions: float,
+        starting_date: datetime,
         deadline: datetime,
         username: str,
         metrics: list[Metric]
@@ -17,13 +18,15 @@ class TrainingPlanCompletion(Goal):
             isinstance(metric, TrainingPlanCompleted) for metric in metrics
         ):
             raise ValueError("Metrics must be of type TrainingPlanCompleted")
-        
+
         if not all(
-            metric.crated_at < deadline for metric in
+            starting_date < metric.created_at and
+            metric.created_at < deadline for metric in
             metrics
         ):
-            raise ValueError("Metrics must be from before the deadline")
-        
+            raise ValueError("Metrics must be from after the starting date" +
+                             "of the goal and before the deadline")
+
         self._goal_num_of_completions = goal_num_of_completions
         self._deadline = deadline
         self._metrics = metrics

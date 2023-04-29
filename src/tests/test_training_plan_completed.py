@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from src.domain.goal.training_plan_completion import TrainingPlanCompletion
 from src.domain.metric.metric import TrainingPlanCompleted
@@ -6,9 +6,11 @@ from src.domain.metric.metric import TrainingPlanCompleted
 
 def test_is_completed_when_satisfied():
     # Given
-    date1 = datetime(2021, 1, 1)
-    date2 = datetime(2021, 1, 2)
-    date3 = datetime(2021, 1, 3)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2100, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
+    date3 = date2 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
@@ -16,8 +18,12 @@ def test_is_completed_when_satisfied():
         TrainingPlanCompleted(date3, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
+    goal = TrainingPlanCompletion(
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert goal.was_achieved()
@@ -25,16 +31,22 @@ def test_is_completed_when_satisfied():
 
 def test_isnt_completed_when_not_satisfied():
     # Given
-    date1 = datetime(2021, 1, 1)
-    date2 = datetime(2021, 1, 2)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2100, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
         TrainingPlanCompleted(date2, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
+    goal = TrainingPlanCompletion(
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert not goal.was_achieved()
@@ -42,16 +54,22 @@ def test_isnt_completed_when_not_satisfied():
 
 def test_completion_progress_not_full():
     # Given
-    date1 = datetime(2021, 1, 1)
-    date2 = datetime(2021, 1, 2)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2100, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
         TrainingPlanCompleted(date2, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
+    goal = TrainingPlanCompletion(
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert goal.completion_percentage() == 2/3 * 100
@@ -59,9 +77,11 @@ def test_completion_progress_not_full():
 
 def test_completion_progress_full():
     # Given
-    date1 = datetime(2021, 1, 1)
-    date2 = datetime(2021, 1, 2)
-    date3 = datetime(2021, 1, 3)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2100, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
+    date3 = date2 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
@@ -69,8 +89,12 @@ def test_completion_progress_full():
         TrainingPlanCompleted(date3, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(3, deadline, "Martin", metrics)
+    goal = TrainingPlanCompletion(
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert goal.completion_percentage() == 100
@@ -78,9 +102,11 @@ def test_completion_progress_full():
 
 def test_completion_progress_overflow():
     # Given
-    date1 = datetime(2021, 1, 1)
-    date2 = datetime(2021, 1, 2)
-    date3 = datetime(2021, 1, 3)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2100, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
+    date3 = date2 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
@@ -88,8 +114,12 @@ def test_completion_progress_overflow():
         TrainingPlanCompleted(date3, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2100, 1, 1)
-    goal = TrainingPlanCompletion(2, deadline, "Martin", metrics)
+    goal = TrainingPlanCompletion(
+        goal_num_of_completions=2,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert goal.completion_percentage() == 100
@@ -97,19 +127,22 @@ def test_completion_progress_overflow():
 
 def test_was_failed_after_deadline_and_incomplete():
     # Given
-    date1 = datetime(2021, 1, 1)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2021, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
+        TrainingPlanCompleted(date2, "Martin", "Plan 1"),
     ]
 
-    expired_date = datetime(2021, 1, 2)
     goal = TrainingPlanCompletion(
-        3,
-        deadline=expired_date, 
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
         username="Martin",
-        metrics=metrics
-        )
+        metrics=metrics)
 
     # Then
     assert goal.was_failed()
@@ -117,19 +150,22 @@ def test_was_failed_after_deadline_and_incomplete():
 
 def test_was_not_failed_before_deadline():
     # Given
-    date1 = datetime(2021, 1, 1)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(3000, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
+        TrainingPlanCompleted(date2, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2200, 1, 2)
     goal = TrainingPlanCompletion(
-        3,
-        deadline,
+        goal_num_of_completions=3,
+        starting_date=starting_date,
+        deadline=deadline,
         username="Martin",
-        metrics=metrics
-        )
+        metrics=metrics)
 
     # Then
     assert not goal.was_failed()
@@ -137,19 +173,22 @@ def test_was_not_failed_before_deadline():
 
 def test_was_not_failed_after_deadline_but_completed():
     # Given
-    date1 = datetime(2020, 1, 1)
+    starting_date = datetime(2021, 1, 1)
+    deadline = datetime(2021, 1, 8)
+    date1 = datetime(2021, 1, 2)
+    date2 = date1 + timedelta(minutes=2)
 
     metrics = [
         TrainingPlanCompleted(date1, "Martin", "Plan 1"),
+        TrainingPlanCompleted(date2, "Martin", "Plan 1"),
     ]
 
-    deadline = datetime(2020, 1, 2)
     goal = TrainingPlanCompletion(
-        1,
-        deadline,
-        "Martin",
-        metrics=metrics
-        )
+        goal_num_of_completions=2,
+        starting_date=starting_date,
+        deadline=deadline,
+        username="Martin",
+        metrics=metrics)
 
     # Then
     assert not goal.was_failed()

@@ -11,6 +11,7 @@ class MaxWeightLiftedInExcercise(Goal):
         self,
         goal_weight_in_kg: float,
         excercise_title: str,
+        starting_date: datetime,
         deadline: datetime,
         username: str,
         metrics: list[Metric]
@@ -27,10 +28,12 @@ class MaxWeightLiftedInExcercise(Goal):
             raise ValueError("Metrics must be of of the same excercise")
 
         if not all(
-            metric.crated_at < deadline for metric in
+            starting_date < metric.created_at and
+            metric.created_at < deadline for metric in
             metrics
         ):
-            raise ValueError("Metrics must be from before the deadline")
+            raise ValueError("Metrics must be from after the starting date" +
+                             "of the goal and before the deadline")
 
         self._goal_weight_in_kg = goal_weight_in_kg
         self._excercise_title = excercise_title
