@@ -37,10 +37,6 @@ class TrainingPlanCompletion(Goal):
         """The goal value to be achieved."""
         return self._goal_num_of_completions
 
-    def unit(self) -> str:
-        """The unit of the goal value."""
-        return self._unit
-
     def metrics(self) -> list[Metric]:
         """The metrics that are used to measure the goal progress."""
         return self._metrics

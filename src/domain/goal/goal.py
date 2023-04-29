@@ -31,11 +31,6 @@ class Goal:
         raise NotImplementedError
 
     @abstractmethod
-    def unit(self) -> str:
-        """The unit of the goal value."""
-        raise NotImplementedError
-
-    @abstractmethod
     def metrics(self) -> list[Metric]:
         """The metrics that are used to measure the goal progress."""
         raise NotImplementedError
