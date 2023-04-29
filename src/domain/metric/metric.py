@@ -18,7 +18,7 @@ class TrainingPlanCompleted(Metric):
 class ExcerciseSetCompleted(Metric):
     """A metric that represents the completion of an excercise"""
     excercise_title: str
-    weight: float
+    weight_in_kg: float
     reps: int
 
 
