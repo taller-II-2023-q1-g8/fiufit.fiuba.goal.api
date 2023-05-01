@@ -15,6 +15,7 @@ def test_is_completed_when_satisfied():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -22,6 +23,7 @@ def test_is_completed_when_satisfied():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -57,6 +59,7 @@ def test_is_not_completed_when_unsatisfied():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -64,6 +67,7 @@ def test_is_not_completed_when_unsatisfied():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -99,6 +103,7 @@ def test_completion_progress_not_full():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -106,6 +111,7 @@ def test_completion_progress_not_full():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -141,6 +147,7 @@ def test_completion_progress_full():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -148,6 +155,7 @@ def test_completion_progress_full():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -183,6 +191,7 @@ def test_completion_progress_overflow():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -190,6 +199,7 @@ def test_completion_progress_overflow():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -225,6 +235,7 @@ def test_was_failed_after_deadline_and_incomplete():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -232,6 +243,7 @@ def test_was_failed_after_deadline_and_incomplete():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -267,6 +279,7 @@ def test_was_not_failed_before_deadline():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -274,6 +287,7 @@ def test_was_not_failed_before_deadline():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",
@@ -309,6 +323,7 @@ def test_was_not_failed_after_deadline_but_completed():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date1,
             'exercise_title': "Bench Press",
@@ -316,6 +331,7 @@ def test_was_not_failed_after_deadline_but_completed():
             'reps': 10
         },
         {
+            'username': 'Martin',
             'type': 'exercise_set_completed',
             'created_at': date2,
             'exercise_title': "Bench Press",

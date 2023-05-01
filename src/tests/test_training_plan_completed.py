@@ -14,16 +14,19 @@ def test_is_completed_when_satisfied():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date3, 
             'plan_title': "Plan 1"
@@ -56,11 +59,13 @@ def test_isnt_completed_when_not_satisfied():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
@@ -93,11 +98,13 @@ def test_completion_progress_not_full():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
@@ -131,16 +138,19 @@ def test_completion_progress_full():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date3, 
             'plan_title': "Plan 1"
@@ -174,16 +184,19 @@ def test_completion_progress_overflow():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1,
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2,
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date3,
             'plan_title': "Plan 1"
@@ -216,11 +229,13 @@ def test_was_failed_after_deadline_and_incomplete():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
@@ -253,11 +268,13 @@ def test_was_not_failed_before_deadline():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date1, 
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"
@@ -290,11 +307,13 @@ def test_was_not_failed_after_deadline_but_completed():
 
     metrics = [
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
-            'created_at': date1, 
+            'created_at': date1,
             'plan_title': "Plan 1"
         },
         {
+            'username': 'Martin',
             'type': 'training_plan_completed',
             'created_at': date2, 
             'plan_title': "Plan 1"

@@ -13,26 +13,6 @@ class TrainingPlanCompletion(Goal):
                 f"Invalid goal dictionary, missing f{missing_keys}"
             )
 
-    def _filter_metrics(self, goal_dict: dict):
-        """Removes the metrics that aren't relevant to
-        the goal from the dict"""
-
-        goal_dict['metrics'] = list(filter(
-            lambda metric:
-            isinstance(metric, TrainingPlanCompleted) and
-            metric.created_at > self._starting_date and
-            metric.created_at < self._deadline,
-            goal_dict['metrics']
-        ))
-
-    def parse_date(dictionary: dict, key: str):
-        """Parses the date from the dictionary and turns it
-        into a datetime object"""
-
-        dictionary[key] = datetime.fromisoformat(
-            str(dictionary[key])
-        )
-
     def to_dict(self) -> dict:
         """Returns a dict representation of the goal."""
         return {
