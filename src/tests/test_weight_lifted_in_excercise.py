@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
-from src.domain.goal.max_weight_lifted_in_exercise\
-    import MaxWeightLiftedInExercise
+from src.domain.goal.max_weight_lifted_in_exercise import MaxWeightLiftedInExercise
 from src.infrastructure.metric.metric_factory import MetricFactory
 
 
@@ -15,32 +14,32 @@ def test_is_completed_when_satisfied():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 110,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 110,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -59,32 +58,32 @@ def test_is_not_completed_when_unsatisfied():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 90,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 90,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 120,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 120,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -103,38 +102,38 @@ def test_completion_progress_not_full():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 130,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 130,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
 
     # Then
-    assert goal.completion_percentage() == 100 * 110/130
+    assert goal.completion_percentage() == 100 * 110 / 130
 
 
 def test_completion_progress_full():
@@ -147,32 +146,32 @@ def test_completion_progress_full():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 110,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 110,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -191,32 +190,32 @@ def test_completion_progress_overflow():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 150,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 150,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 110,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 110,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -235,32 +234,32 @@ def test_was_failed_after_deadline_and_incomplete():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 120,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 120,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -279,32 +278,32 @@ def test_was_not_failed_before_deadline():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 120,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 120,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)
@@ -323,32 +322,32 @@ def test_was_not_failed_after_deadline_but_completed():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date1,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date1,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
         },
         {
-            'username': 'Martin',
-            'type': 'exercise_set_completed',
-            'created_at': date2,
-            'exercise_title': "Bench Press",
-            'weight_in_kg': 110,
-            'reps': 10
-        }
+            "username": "Martin",
+            "type": "exercise_set_completed",
+            "created_at": date2,
+            "exercise_title": "Bench Press",
+            "weight_in_kg": 110,
+            "reps": 10,
+        },
     ]
 
     goal_dict = {
-        '_id': None,
-        'username': 'Martin',
-        'type': 'max_weight_lifted_in_exercise',
-        'goal_weight_in_kg': 110,
-        'exercise_title': "Bench Press",
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "_id": None,
+        "username": "Martin",
+        "type": "max_weight_lifted_in_exercise",
+        "goal_weight_in_kg": 110,
+        "exercise_title": "Bench Press",
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = MaxWeightLiftedInExercise(goal_dict, metric_factory)

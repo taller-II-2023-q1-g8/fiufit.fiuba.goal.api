@@ -10,6 +10,7 @@ class Metric:
 @dataclass
 class TrainingPlanCompleted(Metric):
     """A metric that represents the completion of a training plan."""
+
     plan_title: str
 
     def __init__(self, goal_dict: dict):
@@ -21,6 +22,7 @@ class TrainingPlanCompleted(Metric):
 @dataclass
 class ExerciseSetCompleted(Metric):
     """A metric that represents the completion of an excercise"""
+
     exercise_title: str
     weight_in_kg: float
     reps: int
@@ -36,6 +38,7 @@ class ExerciseSetCompleted(Metric):
 @dataclass
 class WeightMeasured(Metric):
     """A metric that represents the user's weight measured"""
+
     weight_in_kg: float
 
     def __init__(self, goal_dict: dict):
@@ -47,6 +50,7 @@ class WeightMeasured(Metric):
 @dataclass
 class DistanceTravelled(Metric):
     """A metric that represents a walk."""
+
     distance_in_km: float
     duration_in_min: float
 
@@ -60,6 +64,7 @@ class DistanceTravelled(Metric):
 @dataclass
 class CaloriesBurned(Metric):
     """A metric that represents the calories burned by the user"""
+
     calories: float
 
     def __init__(self, goal_dict: dict):

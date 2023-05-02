@@ -5,13 +5,12 @@ from src.domain.metric.metric import Metric, TrainingPlanCompleted
 
 class TrainingPlanCompletion(Goal):
     """A goal that represents the repeated completion of a training plan."""
+
     def _check_required_keys(self, d: dict, required_keys: list[str]):
         """Checks that the required keys are present in the dict."""
         missing_keys = [key for key in required_keys if key not in d]
         if missing_keys:
-            raise ValueError(
-                f"Invalid goal dictionary, missing f{missing_keys}"
-            )
+            raise ValueError(f"Invalid goal dictionary, missing f{missing_keys}")
 
     def to_dict(self) -> dict:
         """Returns a dict representation of the goal."""
@@ -20,7 +19,7 @@ class TrainingPlanCompletion(Goal):
             "goal_num_of_completions": self._goal_num_of_completions,
             "starting_date": self._starting_date,
             "deadline": self._deadline,
-            "metrics": self._metrics
+            "metrics": self._metrics,
         }
 
     def __init__(self, goal_dict: dict, metric_factory):
@@ -32,8 +31,8 @@ class TrainingPlanCompletion(Goal):
         self._starting_date = goal_dict["starting_date"]
         self._deadline = goal_dict["deadline"]
         self._metrics = [
-            metric_factory.from_dict(metric_dict) for
-            metric_dict in goal_dict["metrics"]
+            metric_factory.from_dict(metric_dict)
+            for metric_dict in goal_dict["metrics"]
         ]
 
     def was_completed(self) -> bool:
@@ -42,7 +41,7 @@ class TrainingPlanCompletion(Goal):
 
     def completion_percentage(self) -> float:
         """The percentage of the goal completion."""
-        return 100 * min(1.0, len(self._metrics)/self._goal_num_of_completions)
+        return 100 * min(1.0, len(self._metrics) / self._goal_num_of_completions)
 
     def was_failed(self) -> bool:
         """Returns True if the deadline has passed."""
@@ -64,13 +63,14 @@ class TrainingPlanCompletion(Goal):
         """Adds new metrics to the goal."""
         # TODO: Add validation that the metrics are not already in the goal
 
-        metrics_to_add = list(filter(
-            lambda metric:
-                isinstance(metric, TrainingPlanCompleted) and
-                metric.created_at > self._starting_date and
-                metric.created_at < self._deadline,
-                metrics
-        ))
+        metrics_to_add = list(
+            filter(
+                lambda metric: isinstance(metric, TrainingPlanCompleted)
+                and metric.created_at > self._starting_date
+                and metric.created_at < self._deadline,
+                metrics,
+            )
+        )
 
         self._metrics.extend(metrics_to_add)
 

@@ -14,33 +14,33 @@ def test_is_completed_when_satisfied():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date3, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date3,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -59,27 +59,27 @@ def test_isnt_completed_when_not_satisfied():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -98,33 +98,33 @@ def test_completion_progress_not_full():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
 
     # Then
-    assert goal.completion_percentage() == 2/3 * 100
+    assert goal.completion_percentage() == 2 / 3 * 100
 
 
 def test_completion_progress_full():
@@ -138,33 +138,33 @@ def test_completion_progress_full():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date3, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date3,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -184,33 +184,33 @@ def test_completion_progress_overflow():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1,
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2,
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date3,
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date3,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 2,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 2,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -229,27 +229,27 @@ def test_was_failed_after_deadline_and_incomplete():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -268,27 +268,27 @@ def test_was_not_failed_before_deadline():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1, 
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 3,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 3,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)
@@ -307,27 +307,27 @@ def test_was_not_failed_after_deadline_but_completed():
 
     metrics = [
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date1,
-            'plan_title': "Plan 1"
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date1,
+            "plan_title": "Plan 1",
         },
         {
-            'username': 'Martin',
-            'type': 'training_plan_completed',
-            'created_at': date2, 
-            'plan_title': "Plan 1"
-        }
+            "username": "Martin",
+            "type": "training_plan_completed",
+            "created_at": date2,
+            "plan_title": "Plan 1",
+        },
     ]
 
     goal_dict = {
-        'username': 'Martin',
-        '_id': None,
-        'type': 'training_plan_completion',
-        'goal_num_of_completions': 2,
-        'starting_date': starting_date,
-        'deadline': deadline,
-        'metrics': metrics
+        "username": "Martin",
+        "_id": None,
+        "type": "training_plan_completion",
+        "goal_num_of_completions": 2,
+        "starting_date": starting_date,
+        "deadline": deadline,
+        "metrics": metrics,
     }
 
     goal = TrainingPlanCompletion(goal_dict, metric_factory)

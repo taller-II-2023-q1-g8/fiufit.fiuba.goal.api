@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from src.infrastructure.metric.metric_schema import MetricSchema
 
 # Dependencies
-from src.infrastructure.dependency_injection import metrics_service
+from src.config import metrics_service
 
 metrics_routes = APIRouter(prefix="/metric")
 
@@ -14,7 +14,7 @@ async def requests_metrics_matching(
     username: str | None = None,
     type: str | None = None,
     from_date: str | None = None,
-    to_date: str | None = None
+    to_date: str | None = None,
 ):
     """User Requests Metrics"""
 
@@ -24,43 +24,31 @@ async def requests_metrics_matching(
 
     # Perform query
     results = metrics_service.user_requests_metrics_matching(
-        username,
-        type,
-        from_date,
-        to_date
+        username, type, from_date, to_date
     )
 
     metrics = []
 
     # Convert metric ids to strings
     for metric in results:
-        metric['_id'] = str(metric['_id'])
+        metric["_id"] = str(metric["_id"])
         metrics.append(metric)
 
     return metrics
 
 
-@metrics_routes.get("/{metric_id}", status_code=200,
-                    response_description="metric")
+@metrics_routes.get("/{metric_id}", status_code=200, response_description="metric")
 async def wants_metric_with_id(metric_id: str):
     """User Requests Metric With Id"""
     metric = metrics_service.user_wants_metric_with_id(metric_id)
 
     # Conver metric id to string
     if metric is not None:
-        metric['_id'] = str(metric['_id'])
+        metric["_id"] = str(metric["_id"])
     return metric
 
 
 @metrics_routes.put("/", status_code=200, response_description="metric")
-async def save_metric(metric: dict):
+async def save_metric(metric: MetricSchema):
     """User Saves Metric"""
-
-    # Validate data
-    MetricSchema(**{'metric': metric})
-
-    # Turn date strings into datetime objects
-    metric['created_at'] = datetime.fromisoformat(metric['created_at'])
-
-    # Create metric
-    return metrics_service.user_wants_to_create_metric(metric)
+    return metrics_service.user_wants_to_create_metric(metric.dict())

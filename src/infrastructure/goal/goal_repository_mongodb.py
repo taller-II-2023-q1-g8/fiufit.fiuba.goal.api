@@ -19,20 +19,16 @@ class GoalRepositoryMongoDB(IRepository):
     def load_by_id(self, goal_id: str) -> dict:
         """Load goal by id"""
         goal = self._collection.find_one({"_id": ObjectId(goal_id)})
-        goal['metrics'] = self._metrics_query.load_related_metrics(goal)
-        goal['_id'] = str(goal['_id'])
+        goal["metrics"] = self._metrics_query.load_related_metrics(goal)
+        goal["_id"] = str(goal["_id"])
         return goal
 
     def load_all(self) -> list[dict]:
         """Load all goals"""
-        goals = [
-            goal for goal in
-            self._collection.find({})
-        ]
+        goals = [goal for goal in self._collection.find({})]
         for i in range(len(goals)):
-            goals[i]['metrics'] = self._metrics_query\
-                .load_related_metrics(goals[i])
-            goals[i]['_id'] = str(goals[i]['_id'])
+            goals[i]["metrics"] = self._metrics_query.load_related_metrics(goals[i])
+            goals[i]["_id"] = str(goals[i]["_id"])
         return goals
 
     def create(self, goal_dict: dict) -> str:

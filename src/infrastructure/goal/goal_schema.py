@@ -12,45 +12,47 @@ class MaxWeightLiftedInExcerciseSchema(BaseModel):
     starting_date: str
     deadline: str
 
-    @validator('goal_weight_in_kg')
-    def goal_num_of_completions_must_be_positive(cls, v):
-        if v < 1:
-            raise ValueError('Goal weight must be positive')
-        return v
+    @validator("starting_date")
+    def parse_starting_date(cls, starting_date):
+        return datetime.fromisoformat(starting_date)
 
-    @validator('deadline')
-    def deadline_must_be_after_starting_date(cls, v, values):
-        starting_date = datetime.fromisoformat(values['starting_date'])
-        deadline = datetime.fromisoformat(v)
-        if starting_date >= deadline:
-            raise ValueError('Goal deadline must be after starting date')
+    @validator("deadline")
+    def parse_deadline(cls, deadline, values):
+        deadline = datetime.fromisoformat(deadline)
+        if deadline < values["starting_date"]:
+            raise ValueError("Goal deadline must be after starting date")
+        return deadline
+
+    @validator("goal_weight_in_kg")
+    def goal_goal_weight_in_kg_must_be_positive(cls, v):
+        if v < 1:
+            raise ValueError("Goal weight must be positive")
         return v
 
 
 class TrainingPlanCompletionSchema(BaseModel):
     type: str
-    username: str
-    goal_num_of_completions: int
     starting_date: str
     deadline: str
+    username: str
+    goal_num_of_completions: int
 
-    @validator('goal_num_of_completions')
+    @validator("starting_date")
+    def parse_starting_date(cls, starting_date):
+        return datetime.fromisoformat(starting_date)
+
+    @validator("deadline")
+    def parse_deadline(cls, deadline, values):
+        deadline = datetime.fromisoformat(deadline)
+        if deadline < values["starting_date"]:
+            raise ValueError("Goal deadline must be after starting date")
+        return deadline
+
+    @validator("goal_num_of_completions")
     def goal_num_of_completions_must_be_positive(cls, v):
         if v < 1:
-            raise ValueError('Goal number of completions must be positive')
-        return v
-
-    @validator('deadline')
-    def deadline_must_be_after_starting_date(cls, v, values):
-        starting_date = datetime.fromisoformat(values['starting_date'])
-        deadline = datetime.fromisoformat(v)
-        if starting_date >= deadline:
-            raise ValueError('Goal deadline must be after starting date')
+            raise ValueError("Goal number of completions must be positive")
         return v
 
 
-class GoalSchema(BaseModel):
-    goal: Union[
-        TrainingPlanCompletionSchema,
-        MaxWeightLiftedInExcerciseSchema
-    ]
+GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExcerciseSchema]

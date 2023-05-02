@@ -11,15 +11,15 @@ class MetricsQuery:
         query = {
             "username": goal_dict["username"],
             "from_date": goal_dict["starting_date"],
-            "to_date": goal_dict["deadline"]
+            "to_date": goal_dict["deadline"],
         }
 
         match goal_dict["type"]:
             case "training_plan_completion":
-                query['type'] = "training_plan_completed"
+                query["type"] = "training_plan_completed"
             case "max_weight_lifted_in_exercise":
-                query['type'] = "exercise_set_completed"
-                query['exercise_title'] = goal_dict['exercise_title']
+                query["type"] = "exercise_set_completed"
+                query["exercise_title"] = goal_dict["exercise_title"]
             case _:
                 raise ValueError(f"Unknown goal type: {goal_dict['type']}")
 
@@ -32,14 +32,14 @@ class MetricsQuery:
         db_query = {"$and": []}
 
         # Date queries
-        if 'from_date' in query_params:
+        if "from_date" in query_params:
             db_query["$and"].append(
-                {"created_at": {"$gte": query_params.pop('from_date')}}
+                {"created_at": {"$gte": query_params.pop("from_date")}}
             )
 
-        if 'to_date' in query_params:
+        if "to_date" in query_params:
             db_query["$and"].append(
-                {"created_at": {"$lte": query_params.pop('to_date')}}
+                {"created_at": {"$lte": query_params.pop("to_date")}}
             )
 
         # Other queries
@@ -52,6 +52,6 @@ class MetricsQuery:
 
         metrics = [metric for metric in self._collection.find(db_query)]
         for i in range(len(metrics)):
-            metrics[i]['_id'] = str(metrics[i]['_id'])
+            metrics[i]["_id"] = str(metrics[i]["_id"])
 
         return metrics

@@ -17,8 +17,8 @@ class MaxWeightLiftedInExercise(Goal):
         self._starting_date = goal_dict["starting_date"]
         self._deadline = goal_dict["deadline"]
         self._metrics = [
-            metric_factory.from_dict(metric_dict) for
-            metric_dict in goal_dict["metrics"]
+            metric_factory.from_dict(metric_dict)
+            for metric_dict in goal_dict["metrics"]
         ]
 
     def _max_weight_lifted_in_kg(self) -> float:
@@ -34,8 +34,7 @@ class MaxWeightLiftedInExercise(Goal):
         """The percentage of the goal completion."""
 
         completion_fraction = min(
-            1.0,
-            self._max_weight_lifted_in_kg()/self._goal_weight_in_kg
+            1.0, self._max_weight_lifted_in_kg() / self._goal_weight_in_kg
         )
 
         return 100 * completion_fraction
@@ -58,14 +57,15 @@ class MaxWeightLiftedInExercise(Goal):
 
     def add_metrics(self, metrics: list[Metric]):
         """Adds new metrics to the goal."""
-        new_metrics = list(filter(
-            lambda metric:
-                isinstance(metric, ExerciseSetCompleted) and
-                metric.exercise_title == self._exercise_title and
-                metric.created_at > self._starting_date and
-                metric.created_at < self._deadline,
-                metrics
-        ))
+        new_metrics = list(
+            filter(
+                lambda metric: isinstance(metric, ExerciseSetCompleted)
+                and metric.exercise_title == self._exercise_title
+                and metric.created_at > self._starting_date
+                and metric.created_at < self._deadline,
+                metrics,
+            )
+        )
 
         self._metrics.extend(new_metrics)
 
@@ -76,7 +76,7 @@ class MaxWeightLiftedInExercise(Goal):
     def exercise_title(self) -> str:
         """The excercise title of the goal."""
         return self._exercise_title
-    
+
     def to_dict(self) -> dict:
         """Returns a dict representation of the goal."""
         return {
@@ -85,5 +85,5 @@ class MaxWeightLiftedInExercise(Goal):
             "exercise_title": self._exercise_title,
             "starting_date": self._starting_date,
             "deadline": self._deadline,
-            "metrics": self._metrics
+            "metrics": self._metrics,
         }
