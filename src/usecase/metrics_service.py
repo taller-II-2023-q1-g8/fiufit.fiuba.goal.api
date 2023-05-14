@@ -37,3 +37,7 @@ class MetricService:
     def user_wants_to_create_metric(self, metric_dict: dict) -> dict:
         """User wants to save a metric"""
         return self._repository.create(metric_dict)
+
+    def user_wants_to_delete_metric_with_id(self, metric_id: str):
+        """User wants to delete a goal"""
+        return self._repository.delete(metric_id)
