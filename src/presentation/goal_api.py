@@ -4,7 +4,7 @@ from src.infrastructure.goal.goal_schema import GoalSchema
 
 from src.config import goals_service
 
-goals_routes = APIRouter(prefix="/goal")
+goals_routes = APIRouter(prefix="/goals")
 goal_statuses = ["in_progress", "completed", "failed"]
 
 
@@ -18,6 +18,13 @@ async def requests_goals_matching(
         raise HTTPException(status_code=400, detail="Invalid status")
 
     return goals_service.user_requests_goals(username, type, status)
+
+@goals_routes.get("/types", status_code=200, response_description="goal types")
+async def requests_goal_types():
+    return {
+        "Max Weight Lifted in Exercise": "max_weight_lifted_in_exercise",
+        "TrainingPlanCompletion": "training_plan_completion",
+    }
 
 
 @goals_routes.get("/{goal_id}", status_code=200, response_description="goal")
@@ -33,21 +40,14 @@ async def requests_goal_with_id(goal_id: str):
 
     return goal
 
-
 @goals_routes.delete("/{goal_id}", status_code=200, response_description="goal")
 async def wants_to_delete_goal_with_id(goal_id: str):
     return goals_service.user_wants_to_delete_goal_with_id(goal_id)
 
 
-@goals_routes.put("/", status_code=200, response_description="goal")
+@goals_routes.post("/", status_code=200, response_description="goal")
 async def wants_to_create_metric(goal: GoalSchema) -> str:
     """User Creates Metric"""
     return goals_service.user_wants_to_create_goal(goal.dict())
 
 
-@goals_routes.put("/types", status_code=200, response_description="goal types")
-async def requests_goal_types():
-    return {
-        "Max Weight Lifted in Exercise": "max_weight_lifted_in_exercise",
-        "TrainingPlanCompletion": "training_plan_completion",
-    }

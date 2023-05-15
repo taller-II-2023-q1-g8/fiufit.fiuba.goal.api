@@ -6,7 +6,7 @@ from src.infrastructure.metric.metric_schema import MetricSchema
 # Dependencies
 from src.config import metrics_service
 
-metrics_routes = APIRouter(prefix="/metric")
+metrics_routes = APIRouter(prefix="/metrics")
 
 
 @metrics_routes.get("/", status_code=200, response_description="metrics")
@@ -48,7 +48,7 @@ async def wants_metric_with_id(metric_id: str):
     return metric
 
 
-@metrics_routes.put("/", status_code=200, response_description="metric")
+@metrics_routes.post("/", status_code=200, response_description="metric")
 async def save_metric(metric: MetricSchema):
     """User Saves Metric"""
     return metrics_service.user_wants_to_create_metric(metric.dict())
