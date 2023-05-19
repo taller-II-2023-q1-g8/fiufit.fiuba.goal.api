@@ -54,6 +54,7 @@ async def save_metric(metric: MetricSchema):
     return metrics_service.user_wants_to_create_metric(metric.dict())
 
 
+
 @metrics_routes.delete("/{metric_id}", status_code=200, response_description="metric")
 async def delete_metric_with_id(metric_id: str):
     """User Deletes Metric With Id"""

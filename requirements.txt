@@ -4,3 +4,6 @@ pytest
 pytest-cov
 pydantic
 pymongo
+google-auth
+requests
+firebase-admin

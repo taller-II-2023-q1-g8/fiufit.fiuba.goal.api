@@ -8,7 +8,7 @@ class GoalQuery:
         self._goal_factory = goal_factory
 
     def load_matching(
-        self, username: str, goal_type: str | None, status: str
+        self, username: str | None = None, goal_type: str | None = None, status: str = ""
     ) -> list[dict]:
         """Load goals with optional filters"""
 

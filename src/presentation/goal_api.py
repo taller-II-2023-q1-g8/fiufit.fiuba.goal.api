@@ -51,3 +51,18 @@ async def wants_to_create_metric(goal: GoalSchema) -> str:
     return goals_service.user_wants_to_create_goal(goal.dict())
 
 
+@goals_routes.get("/notifications/{username}", status_code=200, response_description="notifications")
+async def requests_notifications_for_user(username: str):
+    """User Requests Notifications"""
+    notifications = goals_service.user_requests_not_acknowledged_notifications_for_user(username)
+
+    for notification in notifications:
+        notification["_id"] = str(notification["_id"])
+    
+    return notifications
+
+@goals_routes.put("/notifications/{notification_id}", status_code=200, response_description="notification")
+async def acknowledges_notification(notification_id: str):
+    """User Acknowledges Notification"""
+    goals_service.acknowledges_notification_with_id(notification_id)
+

@@ -6,6 +6,7 @@ class GoalService(IRepository):
         self._repository = goal_repository
         self._goal_query = goal_query
         self._goal_factory = goal_factory
+        # self._notifications_repository = notifications_repository
 
     def user_wants_goal_with_id(self, goal_id: str) -> dict:
         """User wants goal with id"""
@@ -51,3 +52,11 @@ class GoalService(IRepository):
     def user_wants_to_delete_goal_with_id(self, goal_id: str):
         """User wants to delete a goal"""
         return self._repository.delete(goal_id)
+
+    # def user_requests_not_acknowledged_notifications_for_user(self, username: str) -> list[dict]:
+    #     """User wants to get goal completion notifications"""
+    #     return self._notifications_repository.get_not_acknowledged_by_username(username)
+    
+    # def acknowledges_notification_with_id(self, notification_id: str):
+    #     """User acknowledges notification"""
+    #     return self._notifications_repository.acknowledge_by_id(notification_id)
