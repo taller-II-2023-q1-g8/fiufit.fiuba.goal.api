@@ -21,7 +21,7 @@ class TrainingPlanCompleted(Metric):
 
 @dataclass
 class ExerciseSetCompleted(Metric):
-    """A metric that represents the completion of an excercise"""
+    """A metric that represents the completion of an exercise"""
 
     exercise_title: str
     weight_in_kg: float
@@ -82,7 +82,7 @@ class CaloriesBurned(Metric):
 #             case 'training_plan_completed':
 #                 return TrainingPlanCompleted(metric_dict)
 #             case 'exercise_set_completed':
-#                 return ExcerciseSetCompleted(metric_dict)
+#                 return ExerciseSetCompleted(metric_dict)
 #             case 'weight_measured':
 #                 return WeightMeasured(metric_dict)
 #             case 'distance_travelled':

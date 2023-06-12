@@ -5,7 +5,7 @@ from src.domain.metric.metric import ExerciseSetCompleted, Metric
 
 
 class MaxWeightLiftedInExercise(Goal):
-    """A goal that represents the max weight lifted in an excercise."""
+    """A goal that represents the max weight lifted in an exercise."""
 
     def __init__(self, goal_dict: dict, metric_factory):
         """Initializes the goal with a dict."""
@@ -74,7 +74,7 @@ class MaxWeightLiftedInExercise(Goal):
         return self._metrics
 
     def exercise_title(self) -> str:
-        """The excercise title of the goal."""
+        """The exercise title of the goal."""
         return self._exercise_title
 
     def to_dict(self) -> dict:

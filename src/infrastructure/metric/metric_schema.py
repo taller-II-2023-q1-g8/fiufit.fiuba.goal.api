@@ -21,7 +21,7 @@ class TrainingPlanCompletedSchema(BaseModel):
         return type
 
 
-class ExcerciseSetCompletedSchema(BaseModel):
+class ExerciseSetCompletedSchema(BaseModel):
     type: str
     username: str
     created_at: datetime
@@ -40,4 +40,4 @@ class ExcerciseSetCompletedSchema(BaseModel):
         return type
 
 
-MetricSchema = Union[ExcerciseSetCompletedSchema, TrainingPlanCompletedSchema]
+MetricSchema = Union[ExerciseSetCompletedSchema, TrainingPlanCompletedSchema]

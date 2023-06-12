@@ -4,13 +4,18 @@ from typing import Union
 from pydantic import BaseModel, validator
 
 
-class MaxWeightLiftedInExcerciseSchema(BaseModel):
+class MaxWeightLiftedInExerciseSchema(BaseModel):
     type: str
     username: str
     exercise_title: str
     goal_weight_in_kg: float
     starting_date: str
     deadline: str
+
+    @validator("type")
+    def type_must_be_valid(cls, v):
+        if v != "max_weight_lifted_in_exercise":
+            raise ValueError("Type must be max_weight_lifted_in_exercise")
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
@@ -38,7 +43,7 @@ class MaxWeightLiftedInExcerciseSchema(BaseModel):
     @validator("username")
     def username_must_be_valid(cls, v):
         if not v:
-            raise ValueError("Exercise title must not be empty")
+            raise ValueError("Username must not be empty")
         return v
 
 
@@ -52,8 +57,13 @@ class TrainingPlanCompletionSchema(BaseModel):
     @validator("username")
     def username_must_be_valid(cls, v):
         if not v:
-            raise ValueError("Exercise title must not be empty")
+            raise ValueError("Username must not be empty")
         return v
+
+    @validator("type")
+    def type_must_be_valid(cls, v):
+        if v != "training_plan_completion":
+            raise ValueError("Type must be training_plan_completion")
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
@@ -73,4 +83,4 @@ class TrainingPlanCompletionSchema(BaseModel):
         return v
 
 
-GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExcerciseSchema]
+GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExerciseSchema]
