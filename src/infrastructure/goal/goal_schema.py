@@ -14,11 +14,11 @@ class MaxWeightLiftedInExcerciseSchema(BaseModel):
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
-        return datetime.fromisoformat(starting_date)
+        return datetime.fromisoformat(starting_date.replace("Z", "+00:00"))
 
     @validator("deadline")
     def parse_deadline(cls, deadline, values):
-        deadline = datetime.fromisoformat(deadline)
+        deadline = datetime.fromisoformat(deadline.replace("Z", "+00:00"))
         if deadline < values["starting_date"]:
             raise ValueError("Goal deadline must be after starting date")
         return deadline
@@ -57,11 +57,11 @@ class TrainingPlanCompletionSchema(BaseModel):
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
-        return datetime.fromisoformat(starting_date)
+        return datetime.fromisoformat(starting_date.replace("Z", "+00:00"))
 
     @validator("deadline")
     def parse_deadline(cls, deadline, values):
-        deadline = datetime.fromisoformat(deadline)
+        deadline = datetime.fromisoformat(deadline.replace("Z", "+00:00"))
         if deadline < values["starting_date"]:
             raise ValueError("Goal deadline must be after starting date")
         return deadline

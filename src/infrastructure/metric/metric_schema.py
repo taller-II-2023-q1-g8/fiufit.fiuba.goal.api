@@ -12,7 +12,7 @@ class TrainingPlanCompletedSchema(BaseModel):
 
     @validator("created_at", pre=True)
     def validate_created_at(cls, v):
-        return datetime.fromisoformat(v)
+        return datetime.fromisoformat(v.replace("Z", "+00:00"))
 
     @validator("type")
     def type_must_be_training_plan_completion(cls, type):
@@ -31,7 +31,7 @@ class ExcerciseSetCompletedSchema(BaseModel):
 
     @validator("created_at", pre=True)
     def validate_created_at(cls, v):
-        return datetime.fromisoformat(v)
+        return datetime.fromisoformat(v.replace("Z", "+00:00"))
 
     @validator("type")
     def type_must_be_exercise_set_completed(cls, type):
