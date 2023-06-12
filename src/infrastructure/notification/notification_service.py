@@ -29,7 +29,10 @@ class NotificationService:
                 "notification":{
                     "body": body,
                     "title": title
-                }
+                },
+                # "data": {
+                #     "id": "1"
+                # }
                 # },
                 # "android": {
                 # "notification": {
@@ -44,11 +47,13 @@ class NotificationService:
     def new_goal_completed(self, username: str, goal_id: str):
         url = f"https://api-gateway-k1nl.onrender.com/user/device/{username}"
         response = requests.get(url)
-        device_token = response.text
-        # device_token = "dG2LW7QxQIO-HfuJ97QDBV:APA91bEVU_xAcCb3d-W4bCiDEEHf4cP1GcvFAZP3BUQ835P0G6khpyZp1NlnmmCNrwanqNUlNU4f15GIV3bGrOWYz5dP97LGeLuO6AOH98EWowWhZjWvY7KyRRzAV9ZMpQFHR_pGgNzY"
+        device_token = response.json()['message']
 
-        goal_type = self.goal_repository.load_by_id(goal_id)['type']
-        notification_body = f"Felicitaciones, haz completado: {goal_type}"
-
+        print(f"Sending New Notification to {username}")
         if device_token is not None:
+            goal_type = self.goal_repository.load_by_id(goal_id)['type']
+            print(f"{username}'s device Token is: {device_token}")
+            notification_body = f"Felicitaciones, haz completado: {goal_type}"
             self._send_notification_to_user(device_token=device_token, title="Meta Completada", body=notification_body)
+        else:
+            print(f"{username} has no associated device Token")
