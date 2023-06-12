@@ -28,6 +28,18 @@ class MaxWeightLiftedInExcerciseSchema(BaseModel):
         if v < 1:
             raise ValueError("Goal weight must be positive")
         return v
+    
+    @validator("exercise_title")
+    def exercise_title_must_be_valid(cls, v):
+        if not v:
+            raise ValueError("Exercise title must not be empty")
+        return v
+
+    @validator("username")
+    def username_must_be_valid(cls, v):
+        if not v:
+            raise ValueError("Exercise title must not be empty")
+        return v
 
 
 class TrainingPlanCompletionSchema(BaseModel):
@@ -36,6 +48,12 @@ class TrainingPlanCompletionSchema(BaseModel):
     deadline: str
     username: str
     goal_num_of_completions: int
+
+    @validator("username")
+    def username_must_be_valid(cls, v):
+        if not v:
+            raise ValueError("Exercise title must not be empty")
+        return v
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):

@@ -47,8 +47,8 @@ class NotificationService:
         device_token = response.text
         # device_token = "dG2LW7QxQIO-HfuJ97QDBV:APA91bEVU_xAcCb3d-W4bCiDEEHf4cP1GcvFAZP3BUQ835P0G6khpyZp1NlnmmCNrwanqNUlNU4f15GIV3bGrOWYz5dP97LGeLuO6AOH98EWowWhZjWvY7KyRRzAV9ZMpQFHR_pGgNzY"
 
-        goal_name = self.goals_repository.load_by_id(goal_id).name
-        notification_body = f"Felicitaciones, haz completado: {goal_name}"
+        goal_type = self.goal_repository.load_by_id(goal_id)['type']
+        notification_body = f"Felicitaciones, haz completado: {goal_type}"
 
         if device_token is not None:
             self._send_notification_to_user(device_token=device_token, title="Meta Completada", body=notification_body)
