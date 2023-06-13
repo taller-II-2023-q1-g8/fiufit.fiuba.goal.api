@@ -14,12 +14,11 @@ class MetricsQuery:
             "to_date": goal_dict["deadline"],
         }
 
+        print(f"DEBUG: Loading Related Metrics for: {goal_dict['_id']}")
         match goal_dict["type"]:
             case "training_plan_completion":
-                print(f"DEBUG: Loading Related Metrics for: {goal_dict['_id']}")
                 query["type"] = "training_plan_completed"
             case "max_weight_lifted_in_exercise":
-                print(f"DEBUG: Loading Related Metrics for: {goal_dict['_id']}")
                 query["type"] = "exercise_set_completed"
                 query["exercise_title"] = goal_dict["exercise_title"]
             case _:
