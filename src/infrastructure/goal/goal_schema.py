@@ -16,6 +16,7 @@ class MaxWeightLiftedInExerciseSchema(BaseModel):
     def type_must_be_valid(cls, v):
         if v != "max_weight_lifted_in_exercise":
             raise ValueError("Type must be max_weight_lifted_in_exercise")
+        return v
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
@@ -64,6 +65,7 @@ class TrainingPlanCompletionSchema(BaseModel):
     def type_must_be_valid(cls, v):
         if v != "training_plan_completion":
             raise ValueError("Type must be training_plan_completion")
+        return v
 
     @validator("starting_date")
     def parse_starting_date(cls, starting_date):
