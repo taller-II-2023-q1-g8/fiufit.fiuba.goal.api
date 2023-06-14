@@ -56,7 +56,7 @@ class NotificationService:
 
     def parsed_goal_title(self, goal):
         if goal["type"] == "max_weight_lifted_in_exercise":
-            return f"Hacer {goal['exercise_title']} con {goal['goal_weight_in_kg']}"
+            return f"Hacer {goal['exercise_title']} con {goal['goal_weight_in_kg']}kg"
         if goal["type"] == "training_plan_completion":
             return (
                 f"Completar {goal['goal_num_of_completions']} planes de entrenamiento"
@@ -74,10 +74,9 @@ class NotificationService:
         if device_token is not None:
             completed_goal = self.goal_repository.load_by_id(goal_id)
             completed_goal_title = self.parsed_goal_title(completed_goal)
-            # goal_type = "Cachimba"
             print(f"{username}'s device Token is: {device_token}")
             notification_body = (
-                f"Felicitaciones, haz logrado   : {completed_goal_title}"
+                f"Felicitaciones, haz logrado: {completed_goal_title}"
             )
             self._send_notification_to_user(
                 device_token=device_token,
