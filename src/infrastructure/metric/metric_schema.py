@@ -40,4 +40,34 @@ class ExerciseSetCompletedSchema(BaseModel):
         return type
 
 
-MetricSchema = Union[ExerciseSetCompletedSchema, TrainingPlanCompletedSchema]
+class StepsTakenSchema(BaseModel):
+    type: str
+    username: str
+    created_at: datetime
+    step_count: int
+    duration_in_seconds: int
+
+    @validator("created_at", pre=True)
+    def validate_created_at(cls, v):
+        return datetime.fromisoformat(v.replace("Z", "+00:00"))
+
+    @validator("type")
+    def type_must_be_steps_taken(cls, type):
+        if type != "steps_taken":
+            raise ValueError("type must be steps_taken")
+        return type
+
+    @validator("step_count")
+    def step_count_must_be_positive(cls, count):
+        if int(count) <= 0:
+            raise ValueError("step count must be positive")
+        return int(count)
+
+    @validator("duration_in_seconds")
+    def duration_must_be_positive(cls, duration):
+        if int(duration) <= 0:
+            raise ValueError("duration must be positive")
+        return int(duration)
+
+
+MetricSchema = Union[ExerciseSetCompletedSchema, TrainingPlanCompletedSchema, StepsTakenSchema]

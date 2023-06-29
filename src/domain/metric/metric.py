@@ -34,58 +34,54 @@ class ExerciseSetCompleted(Metric):
         self.weight_in_kg = goal_dict["weight_in_kg"]
         self.reps = goal_dict["reps"]
 
-
 @dataclass
-class WeightMeasured(Metric):
-    """A metric that represents the user's weight measured"""
+class StepsTaken(Metric):
+    """A metric that represents the steps taken during a time interval"""
 
-    weight_in_kg: float
+    num_of_steps: int
 
     def __init__(self, goal_dict: dict):
         """Initializes the metric with a dict."""
         self.created_at = goal_dict["created_at"]
-        self.weight_in_kg = goal_dict["weight_in_kg"]
+        self.duration_in_seconds = goal_dict["duration_in_seconds"]
+        self.step_count = goal_dict["step_count"]
 
 
-@dataclass
-class DistanceTravelled(Metric):
-    """A metric that represents a walk."""
-
-    distance_in_km: float
-    duration_in_min: float
-
-    def __init__(self, goal_dict: dict):
-        """Initializes the metric with a dict."""
-        self.created_at = goal_dict["created_at"]
-        self.distance_in_km = goal_dict["distance_in_km"]
-        self.duration_in_min = goal_dict["duration_in_min"]
 
 
-@dataclass
-class CaloriesBurned(Metric):
-    """A metric that represents the calories burned by the user"""
+# @dataclass
+# class WeightMeasured(Metric):
+#     """A metric that represents the user's weight measured"""
 
-    calories: float
+#     weight_in_kg: float
 
-    def __init__(self, goal_dict: dict):
-        """Initializes the metric with a dict."""
-        self.created_at = goal_dict["created_at"]
-        self.calories = goal_dict["calories"]
+#     def __init__(self, goal_dict: dict):
+#         """Initializes the metric with a dict."""
+#         self.created_at = goal_dict["created_at"]
+#         self.weight_in_kg = goal_dict["weight_in_kg"]
 
 
-# class MetricFactory:
-#     """A factory that creates metrics."""
+# @dataclass
+# class DistanceTravelled(Metric):
+#     """A metric that represents a walk."""
 
-#     def create_metric(self, metric_dict: dict) -> Metric:
-#         """Creates a metric from a dict."""
-#         match metric_dict['type']:
-#             case 'training_plan_completed':
-#                 return TrainingPlanCompleted(metric_dict)
-#             case 'exercise_set_completed':
-#                 return ExerciseSetCompleted(metric_dict)
-#             case 'weight_measured':
-#                 return WeightMeasured(metric_dict)
-#             case 'distance_travelled':
-#                 return DistanceTravelled(metric_dict)
-#             case 'calories_burned':
-#                 return CaloriesBurned(metric_dict)
+#     distance_in_km: float
+#     duration_in_min: float
+
+#     def __init__(self, goal_dict: dict):
+#         """Initializes the metric with a dict."""
+#         self.created_at = goal_dict["created_at"]
+#         self.distance_in_km = goal_dict["distance_in_km"]
+#         self.duration_in_min = goal_dict["duration_in_min"]
+
+
+# @dataclass
+# class CaloriesBurned(Metric):
+#     """A metric that represents the calories burned by the user"""
+
+#     calories: float
+
+#     def __init__(self, goal_dict: dict):
+#         """Initializes the metric with a dict."""
+#         self.created_at = goal_dict["created_at"]
+#         self.calories = goal_dict["calories"]

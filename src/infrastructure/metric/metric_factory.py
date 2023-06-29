@@ -1,11 +1,12 @@
 """Used for mapping dictionaries to Metric domain objects.""" ""
 from src.domain.metric.metric import (
-    CaloriesBurned,
-    DistanceTravelled,
+    # CaloriesBurned,
+    # DistanceTravelled,
     ExerciseSetCompleted,
     Metric,
+    StepsTaken,
     TrainingPlanCompleted,
-    WeightMeasured,
+    # WeightMeasured,
 )
 
 
@@ -17,11 +18,13 @@ class MetricFactory:
                 return TrainingPlanCompleted(metric_dict)
             case "exercise_set_completed":
                 return ExerciseSetCompleted(metric_dict)
-            case "weight_measured":
-                return WeightMeasured(metric_dict)
-            case "distance_travelled":
-                return DistanceTravelled(metric_dict)
-            case "calories_burned":
-                return CaloriesBurned(metric_dict)
+            case "steps_taken":
+                return StepsTaken(metric_dict)
+            # case "weight_measured":
+            #     return WeightMeasured(metric_dict)
+            # case "distance_travelled":
+            #     return DistanceTravelled(metric_dict)
+            # case "calories_burned":
+            #     return CaloriesBurned(metric_dict)
             case _:
                 raise ValueError(f"Invalid metric type {metric_dict['type']}")
