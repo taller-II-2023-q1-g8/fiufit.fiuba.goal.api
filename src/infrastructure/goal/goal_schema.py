@@ -84,5 +84,76 @@ class TrainingPlanCompletionSchema(BaseModel):
             raise ValueError("Goal number of completions must be positive")
         return v
 
+class TotalStepsTakenSchema(BaseModel):
+    type: str
+    starting_date: str
+    deadline: str
+    username: str
+    goal_num_of_steps: int
 
-GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExerciseSchema]
+    @validator("username")
+    def username_must_be_valid(cls, v):
+        if not v:
+            raise ValueError("Username must not be empty")
+        return v
+
+    @validator("type")
+    def type_must_be_valid(cls, v):
+        if v != "total_steps_taken":
+            raise ValueError("Type must be total_steps_taken")
+        return v
+
+    @validator("starting_date")
+    def parse_starting_date(cls, starting_date):
+        return datetime.fromisoformat(starting_date.replace("Z", "+00:00"))
+
+    @validator("deadline")
+    def parse_deadline(cls, deadline, values):
+        deadline = datetime.fromisoformat(deadline.replace("Z", "+00:00"))
+        if deadline < values["starting_date"]:
+            raise ValueError("Goal deadline must be after starting date")
+        return deadline
+
+    @validator("goal_num_of_steps")
+    def goal_num_of_steps_must_be_positive(cls, v):
+        if v < 1:
+            raise ValueError("Goal number of steps must be positive")
+        return v
+
+class TotalDistanceTravelled(BaseModel):
+    type: str
+    starting_date: str
+    deadline: str
+    username: str
+    goal_distance_in_meters: int
+
+    @validator("username")
+    def username_must_be_valid(cls, v):
+        if not v:
+            raise ValueError("Username must not be empty")
+        return v
+
+    @validator("type")
+    def type_must_be_valid(cls, v):
+        if v != "total_distance_travelled":
+            raise ValueError("Type must be total_distance_travelled")
+        return v
+
+    @validator("starting_date")
+    def parse_starting_date(cls, starting_date):
+        return datetime.fromisoformat(starting_date.replace("Z", "+00:00"))
+
+    @validator("deadline")
+    def parse_deadline(cls, deadline, values):
+        deadline = datetime.fromisoformat(deadline.replace("Z", "+00:00"))
+        if deadline < values["starting_date"]:
+            raise ValueError("Goal deadline must be after starting date")
+        return deadline
+
+    @validator("goal_distance_in_meters")
+    def goal_distance_in_meters_must_be_positive(cls, v):
+        if v < 1:
+            raise ValueError("Goal distance must be positive")
+        return v
+
+GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExerciseSchema, TotalStepsTakenSchema, TotalDistanceTravelled]

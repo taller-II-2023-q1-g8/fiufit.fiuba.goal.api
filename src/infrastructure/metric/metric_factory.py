@@ -2,6 +2,7 @@
 from src.domain.metric.metric import (
     # CaloriesBurned,
     # DistanceTravelled,
+    DistanceTravelled,
     ExerciseSetCompleted,
     Metric,
     StepsTaken,
@@ -20,10 +21,10 @@ class MetricFactory:
                 return ExerciseSetCompleted(metric_dict)
             case "steps_taken":
                 return StepsTaken(metric_dict)
+            case "distance_travelled":
+                return DistanceTravelled(metric_dict)
             # case "weight_measured":
             #     return WeightMeasured(metric_dict)
-            # case "distance_travelled":
-            #     return DistanceTravelled(metric_dict)
             # case "calories_burned":
             #     return CaloriesBurned(metric_dict)
             case _:

@@ -23,6 +23,8 @@ class MetricsQuery:
                 query["exercise_title"] = goal_dict["exercise_title"]
             case "total_steps_taken":
                 query["type"] = "steps_taken"
+            case "total_distance_travelled":
+                query["type"] = "distance_travelled"
             case _:
                 raise ValueError(f"Unknown goal type: {goal_dict['type']}")
 

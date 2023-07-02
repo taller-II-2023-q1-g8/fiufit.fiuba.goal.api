@@ -34,6 +34,7 @@ class ExerciseSetCompleted(Metric):
         self.weight_in_kg = goal_dict["weight_in_kg"]
         self.reps = goal_dict["reps"]
 
+
 @dataclass
 class StepsTaken(Metric):
     """A metric that represents the steps taken during a time interval"""
@@ -47,6 +48,18 @@ class StepsTaken(Metric):
         self.step_count = goal_dict["step_count"]
 
 
+@dataclass
+class DistanceTravelled(Metric):
+    """A metric that represents a walk."""
+
+    distance_in_meters: float
+    duration_in_seconds: float
+
+    def __init__(self, goal_dict: dict):
+        """Initializes the metric with a dict."""
+        self.created_at = goal_dict["created_at"]
+        self.distance_in_meters = goal_dict["distance_in_meters"]
+        self.duration_in_seconds = goal_dict["duration_in_seconds"]
 
 
 # @dataclass
@@ -59,21 +72,6 @@ class StepsTaken(Metric):
 #         """Initializes the metric with a dict."""
 #         self.created_at = goal_dict["created_at"]
 #         self.weight_in_kg = goal_dict["weight_in_kg"]
-
-
-# @dataclass
-# class DistanceTravelled(Metric):
-#     """A metric that represents a walk."""
-
-#     distance_in_km: float
-#     duration_in_min: float
-
-#     def __init__(self, goal_dict: dict):
-#         """Initializes the metric with a dict."""
-#         self.created_at = goal_dict["created_at"]
-#         self.distance_in_km = goal_dict["distance_in_km"]
-#         self.duration_in_min = goal_dict["duration_in_min"]
-
 
 # @dataclass
 # class CaloriesBurned(Metric):
