@@ -82,8 +82,8 @@ class DistanceTravelledSchema(BaseModel):
 
     @validator("type")
     def type_must_be_steps_taken(cls, type):
-        if type != "steps_taken":
-            raise ValueError("type must be steps_taken")
+        if type != "distance_travelled":
+            raise ValueError("type must be distance_travelled")
         return type
 
     @validator("distance_in_meters")
