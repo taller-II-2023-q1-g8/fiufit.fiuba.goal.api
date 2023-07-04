@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/app/src')
-
 from src.domain.goal.distance_travelled import TotalDistanceTravelled
 
 

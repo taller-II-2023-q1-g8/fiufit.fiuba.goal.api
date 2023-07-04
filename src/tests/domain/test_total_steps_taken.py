@@ -1,7 +1,3 @@
-import sys
-
-sys.path.append('/app/src')
-
 from datetime import datetime, timedelta
 
 from src.domain.goal.steps_taken import TotalStepsTaken

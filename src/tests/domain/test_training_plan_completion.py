@@ -1,5 +1,3 @@
-import sys
-sys.path.append('/app/src')
 
 from datetime import datetime, timedelta
 from src.domain.goal.training_plan_completion import TrainingPlanCompletion

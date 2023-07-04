@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/app/src')
-
 from datetime import datetime, timedelta
 
 from src.domain.goal.max_weight_lifted_in_exercise import MaxWeightLiftedInExercise

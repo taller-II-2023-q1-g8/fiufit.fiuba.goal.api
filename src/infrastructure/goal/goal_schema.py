@@ -47,7 +47,6 @@ class MaxWeightLiftedInExerciseSchema(BaseModel):
             raise ValueError("Username must not be empty")
         return v
 
-
 class TrainingPlanCompletionSchema(BaseModel):
     type: str
     starting_date: str
@@ -120,7 +119,7 @@ class TotalStepsTakenSchema(BaseModel):
             raise ValueError("Goal number of steps must be positive")
         return v
 
-class TotalDistanceTravelled(BaseModel):
+class TotalDistanceTravelledSchema(BaseModel):
     type: str
     starting_date: str
     deadline: str
@@ -156,4 +155,4 @@ class TotalDistanceTravelled(BaseModel):
             raise ValueError("Goal distance must be positive")
         return v
 
-GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExerciseSchema, TotalStepsTakenSchema, TotalDistanceTravelled]
+GoalSchema = Union[TrainingPlanCompletionSchema, MaxWeightLiftedInExerciseSchema, TotalStepsTakenSchema, TotalDistanceTravelledSchema]
