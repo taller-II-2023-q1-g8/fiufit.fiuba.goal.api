@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/taller-II-2023-q1-g8/TemplateFastAPI/branch/master/graph/badge.svg?token=CM3FJKHBQ0)](https://codecov.io/gh/taller-II-2023-q1-g8/TemplateFastAPI)
+[![codecov](https://codecov.io/gh/taller-II-2023-q1-g8/TemplateFastAPI/branch/master/graph/badge.svg?token=CM3FJKHBQ0)](https://codecov.io/gh/taller-II-2023-q1-g8/fiufit.fiuba.goal.api)
 [![Pylint](https://github.com/taller-II-2023-q1-g8/TemplateFastAPI/actions/workflows/pylint.yml/badge.svg)](https://github.com/taller-II-2023-q1-g8/TemplateFastAPI/actions/workflows/pylint.yml)
 # Instrucciones
 Con el directorio root como CWD:
