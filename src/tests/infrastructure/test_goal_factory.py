@@ -5,9 +5,10 @@ from src.infrastructure.metric.metric_factory import MetricFactory
 
 from src.infrastructure.goal.goal_factory import GoalFactory
 from src.domain.goal.max_weight_lifted_in_exercise import MaxWeightLiftedInExercise
-from src.domain.goal.steps_taken import TotalStepsTaken
+from src.domain.goal.total_steps_taken import TotalStepsTaken
 from src.domain.goal.training_plan_completion import TrainingPlanCompletion
-from src.domain.goal.distance_travelled import TotalDistanceTravelled
+from src.domain.goal.total_distance_travelled import TotalDistanceTravelled
+
 
 def test_max_weight_lifted_in_exercise_is_created():
     metric_factory = MetricFactory()
@@ -35,7 +36,6 @@ def test_max_weight_lifted_in_exercise_is_created():
         },
     ]
 
-
     goal_dict = {
         "_id": None,
         "username": "Martin",
@@ -51,6 +51,7 @@ def test_max_weight_lifted_in_exercise_is_created():
     goal = factory.from_dict(goal_dict)
     assert isinstance(goal, MaxWeightLiftedInExercise)
 
+
 def test_total_steps_taken_is_created():
     # Given
     metric_factory = MetricFactory()
@@ -65,16 +66,15 @@ def test_total_steps_taken_is_created():
             "type": "steps_taken",
             "created_at": date1,
             "duration_in_seconds": 120,
-            "step_count": 100
+            "step_count": 100,
         },
         {
             "username": "Martin",
             "type": "steps_taken",
             "created_at": date2,
             "duration_in_seconds": 180,
-            "step_count": 100
+            "step_count": 100,
         },
-
     ]
 
     goal_dict = {
@@ -93,6 +93,7 @@ def test_total_steps_taken_is_created():
     # Then
     assert isinstance(goal, TotalStepsTaken)
 
+
 def total_distance_travelled_is_created():
     # Given
     metric_factory = MetricFactory()
@@ -107,16 +108,15 @@ def total_distance_travelled_is_created():
             "type": "distance_travelled",
             "created_at": date1,
             "duration_in_seconds": 120,
-            "distance_in_meters": 1000
+            "distance_in_meters": 1000,
         },
         {
             "username": "Martin",
             "type": "distance_travelled",
             "created_at": date2,
             "duration_in_seconds": 180,
-            "distance_in_meters": 1000
+            "distance_in_meters": 1000,
         },
-
     ]
 
     goal_dict = {
@@ -134,6 +134,7 @@ def total_distance_travelled_is_created():
 
     # Then
     assert isinstance(goal, TotalDistanceTravelled)
+
 
 def test_training_plan_completion_is_created():
     # Given

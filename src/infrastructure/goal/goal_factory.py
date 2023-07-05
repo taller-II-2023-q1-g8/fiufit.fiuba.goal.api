@@ -1,9 +1,9 @@
 """Used for mapping dictionaries to Goal domain objects.""" ""
 from src.domain.goal.goal import Goal
 from src.domain.goal.max_weight_lifted_in_exercise import MaxWeightLiftedInExercise
-from src.domain.goal.steps_taken import TotalStepsTaken
+from src.domain.goal.total_steps_taken import TotalStepsTaken
 from src.domain.goal.training_plan_completion import TrainingPlanCompletion
-from src.domain.goal.distance_travelled import TotalDistanceTravelled
+from src.domain.goal.total_distance_travelled import TotalDistanceTravelled
 
 
 class GoalFactory:

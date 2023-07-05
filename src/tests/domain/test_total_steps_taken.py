@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from src.domain.goal.steps_taken import TotalStepsTaken
+from src.domain.goal.total_steps_taken import TotalStepsTaken
 from src.infrastructure.metric.metric_factory import MetricFactory
 
 

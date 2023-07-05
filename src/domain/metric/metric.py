@@ -18,7 +18,6 @@ class TrainingPlanCompleted(Metric):
         self.created_at = goal_dict["created_at"]
         self.plan_title = goal_dict["plan_title"]
 
-
 @dataclass
 class ExerciseSetCompleted(Metric):
     """A metric that represents the completion of an exercise"""
@@ -39,7 +38,8 @@ class ExerciseSetCompleted(Metric):
 class StepsTaken(Metric):
     """A metric that represents the steps taken during a time interval"""
 
-    num_of_steps: int
+    step_count: int
+    duration_in_seconds: float
 
     def __init__(self, goal_dict: dict):
         """Initializes the metric with a dict."""

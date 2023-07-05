@@ -1,4 +1,4 @@
-from src.domain.goal.distance_travelled import TotalDistanceTravelled
+from src.domain.goal.total_distance_travelled import TotalDistanceTravelled
 
 
 from datetime import datetime, timedelta
