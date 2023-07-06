@@ -27,9 +27,11 @@ jobs:
     - name: Build coverage file
       run: |
         pytest --cov=src/ --cov-report xml src/tests/ 
-    - name: Upload coverage reports to Codecov
+    - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v3
-        env: CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
       # with:
       #   token: ${{ secrets.CODECOV_TOKEN }}
       #   flags: unittests
