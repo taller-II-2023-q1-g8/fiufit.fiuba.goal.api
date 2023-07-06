@@ -117,9 +117,9 @@ To get a local copy up and running follow these simple example steps.
 ## Usage
 
 This is a basic example of the main workflow:
-- Create a goal: POST \<app-url>/goals/
-- Create a metric to feed the goal: POST \<app-url>/metrics/
-- Check the progress of the goal: GET \<app-url>/goals/\<goal-id>
+- Create a goal: ```POST \<app-url>/goals/```
+- Create a metric to feed the goal: ```POST \<app-url>/metrics/```
+- Check the progress of the goal: ```GET \<app-url>/goals/\<goal-id>```
 
 _For more examples, please refer to the [Documentation](https://fiufit-goals-and-metrics.onrender.com/docs)_
 
@@ -150,7 +150,7 @@ _For more examples, please refer to the [Documentation](https://fiufit-goals-and
 
 Franco Papa - fpapa@fi.uba.ar
 
-Project Link: [[https://github.com/taller-II-2023-q1-g8/fiufit.fiuba.user.api](https://github.com/taller-II-2023-q1-g8/fiufit.fiuba.goal.api)]
+Project Link: [[https://github.com/taller-II-2023-q1-g8](https://github.com/taller-II-2023-q1-g8)]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
