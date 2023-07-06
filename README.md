@@ -25,8 +25,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/taller-II-2023-q1-g8/fiufit.fiuba.app.mobile/blob/development/src/assets/app.png?raw=true">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/taller-II-2023-q1-g8/fiufit.fiuba.app.mobile">
+    <img src="https://firebasestorage.googleapis.com/v0/b/fiufit-73a11.appspot.com/o/app.png?alt=media&token=77feb7b5-9fcc-4cd0-aa4a-54236b810170" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Goals and Metrics Microservice</h3>
@@ -72,7 +72,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+The APP has Goals which represent an Objective which should be fulfilled before a certain deadline. The progress towards the completion is based on metrics. These metrics represent an event such as a user walking a certain distance in a given time, or him/her completing an exercise set, including the weight lifted and repetitions performed. When goals are loaded from a repository, metrics are fetched automatically and the goal state is calculated based on them.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -139,7 +139,6 @@ _For more examples, please refer to the [Documentation](https://fiufit-goals-and
   - [x] Goal: TotalDistanceTravelled
   - [x] Metric: StepsTaken
   - [x] Metric: DistanceTravelled
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
