@@ -1,13 +1,10 @@
-FROM python:3.10.12-bullseye
-# FROM goals_and_metrics_microservices_microservice:latest
+FROM python:3.10.12-alpine
 WORKDIR /app
-
-COPY . /app
+COPY ./src .
+COPY ./main.py .
+COPY ./requirements.txt .
 RUN pip3 install --upgrade pip
-COPY requirements.txt /app
 RUN pip install -r requirements.txt
-COPY src /app
+ENV PATH="/app/src:${PATH}"
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-
-#uvicorn main:app --host 0.0.0.0 --port 8000 --reload

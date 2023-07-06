@@ -6,12 +6,10 @@ import requests, os
 SEND_NOTIFICATIONS_URL = os.environ.get("SEND_NOTIFICATIONS_URL")
 if SEND_NOTIFICATIONS_URL is None:
     print("SEND_NOTIFICATIONS_URL not found in Environment")
-    exit(-1)
 
 DEVICE_TOKEN_URL = os.environ.get("DEVICE_TOKEN_URL")
 if DEVICE_TOKEN_URL is None:
     print("DEVICE_TOKEN_URL not found in Environment")
-    exit(-1)
 
 PRIVATE_KEY_PATH = "/etc/secrets/fiufit-73a11.json"
 
@@ -30,6 +28,8 @@ class NotificationService:
 
     def _send_notification_to_user(self, device_token: str, title: str, body: str):
         url = SEND_NOTIFICATIONS_URL
+        if url is None:
+            return
 
         headers = {
             "Authorization": "Bearer " + self._get_token(),
@@ -65,6 +65,9 @@ class NotificationService:
         raise ValueError(f"Invalid goal type {goal['type']} (ID: f{goal['_id']})")
 
     def new_goal_completed(self, username: str, goal_id: str):
+        if DEVICE_TOKEN_URL is None:
+            return
+        
         url = f"{DEVICE_TOKEN_URL}/{username}"
         print("URL: ", url)
         response = requests.get(url)
