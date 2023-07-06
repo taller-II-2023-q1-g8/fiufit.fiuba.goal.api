@@ -107,6 +107,8 @@ To get a local copy up and running follow these simple example steps.
    docker-compose up --build
    ```
 
+3. This will have the microservice running on localhost:8000 and the database on localhost:27017
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
