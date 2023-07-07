@@ -1,8 +1,8 @@
 FROM python:3.10.12-alpine
 WORKDIR /app
-COPY ./src .
-COPY ./main.py .
-COPY ./requirements.txt .
+COPY ./src ./src
+COPY ./main.py ./main.py
+COPY ./requirements.txt ./requirements.txt
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
 ENV PATH="/app/src:${PATH}"
